@@ -1,0 +1,19 @@
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+
+const dev = process.env.NODE_ENV === 'development';
+
+const config = {
+  plugins: [
+    tailwindcss,
+    autoprefixer,
+
+    !dev &&
+      cssnano({
+        preset: ['default', { discardComments: { removeAll: true } }],
+      }),
+  ],
+};
+
+module.exports = config;
